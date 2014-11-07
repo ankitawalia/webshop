@@ -20,7 +20,7 @@ public class ShoppingCart implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1914582550333167187L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

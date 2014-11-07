@@ -13,12 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
-
 @Entity
 @Table(name="customer",schema="tacton")
-@Audited
 public class Customer implements Serializable{
 
 	/**
@@ -47,13 +43,13 @@ public class Customer implements Serializable{
 	private double credit;
 	
 	@Column
-	@NotAudited
 	@Version
 	private long version;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")
 	private Date createdDate;
+	
 	public String getCustomerAddress() {
 		return customerAddress;
 	}

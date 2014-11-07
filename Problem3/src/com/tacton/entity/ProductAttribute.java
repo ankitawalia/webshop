@@ -7,18 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.envers.Audited;
 
 @Entity
-@Table(name="attributesType",schema="tacton")
-@Audited
+@Table(name="product_attributes",schema="tacton")
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
-public class AttributesType implements Serializable {
+public class ProductAttribute implements Serializable{
 
 	/**
 	 * 
@@ -29,14 +26,19 @@ public class AttributesType implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="attribute_id", nullable=false,unique=true)
+	@Column(name="product_ref_id")
+	private String productId;
+	
+	@Column(name="attribute_ref_id")
 	private String attributeId;
 	
-	@Column(name="attribute_name")
-	private String attributeName;
-	
-	@ManyToMany
-	private Product product;
+	public String getAttributeId() {
+		return attributeId;
+	}
+
+	public void setAttributeId(String attributeId) {
+		this.attributeId = attributeId;
+	}
 
 	public int getId() {
 		return id;
@@ -46,28 +48,13 @@ public class AttributesType implements Serializable {
 		this.id = id;
 	}
 
-	public String getAttributeId() {
-		return attributeId;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setAttributeId(String attributeId) {
-		this.attributeId = attributeId;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
-	public String getAttributeName() {
-		return attributeName;
-	}
-
-	public void setAttributeName(String attributeName) {
-		this.attributeName = attributeName;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 	
 }

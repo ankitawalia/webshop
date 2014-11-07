@@ -8,7 +8,7 @@ import com.tacton.Exception.NoSuchCustomerException;
 import com.tacton.dao.CustomerDao;
 import com.tacton.entity.Customer;
 
-public class CustomerDaoImpl extends AbstractBaseDaoImpl<Customer>  implements CustomerDao {
+public class CustomerDaoImpl extends AbstractBaseDaoImpl<Customer> implements CustomerDao {
 	
 	private static Logger logger = Logger.getLogger(CustomerDao.class);
 
