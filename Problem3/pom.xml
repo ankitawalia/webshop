@@ -11,7 +11,14 @@
  	<description>
         Tacton code test assignment solution. 
     </description>
-    
+     <repositories>
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
     <dependencies>
        
         <dependency>
@@ -40,46 +47,31 @@
 		</dependency>
 		
 		<dependency>
-    		<groupId>org.aopalliance</groupId>
-    		<artifactId>com.springsource.org.aopalliance</artifactId>
-    		<version>1.0.0</version>
-        </dependency>
-		<dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-		</dependency>
-		<dependency>
-            <groupId>org.dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <version>4.0.1.Final</version>
+            <version>3.3.0.ga</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/hibernate-commons-annotations-3.3.0.ga.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.2.0.Final</version>
+            <version>4.3.7.Final</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-core-4.2.0.Final.jar</systemPath>
+            <systemPath>${basedir}/lib/hibernate-core-4.3.7.Final.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.2.0.Final</version>
+            <version>4.3.7.Final</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-entitymanager-4.2.0.Final.jar</systemPath>
-		</dependency>
-		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-envers</artifactId>
-            <version>4.2.0.Final</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-envers-4.2.0.Final.jar</systemPath>
+            <systemPath>${basedir}/lib/hibernate-entitymanager-4.3.7.Final.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -91,66 +83,31 @@
 		<dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.15.0-GA</version>
+            <version>3.18.2-GA</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/javassist-3.15.0-GA.jar</systemPath>
-		</dependency>
-		<dependency>
-            <groupId>org.jboss.naming</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.1.0.GA</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/jboss-logging-3.1.0.GA.jar</systemPath>
-		</dependency>
-		<dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar</systemPath>
-		</dependency> 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>3.0.6.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-aop-3.0.6.RELEASE.jar</systemPath>
-		</dependency>
-		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
-            <version>3.0.6.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-asm-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/javassist-3.18.2-GA.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>3.0.6.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-beans-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/spring-beans-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>3.0.6.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-context-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/spring-context-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>3.0.6.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-core-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/spring-core-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
-		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>3.0.6.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-expression-3.0.6.RELEASE.jar</systemPath>
-        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -166,26 +123,23 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>3.0.6.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-jdbc-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/spring-jdbc-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>3.0.6.RELEASE</version>
+            <version>4.1.1.RELEASE</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-orm-3.0.6.RELEASE.jar</systemPath>
+            <systemPath>${basedir}/lib/spring-orm-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>3.0.6.RELEASE</version>
-		</dependency>
-		<dependency>
- 			 <groupId>org.hibernate</groupId>
- 			 <artifactId>hibernate-ehcache</artifactId>
- 			 <version>4.2.0.Final</version>
+            <version>4.1.1.RELEASE</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spring-tx-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
             
     </dependencies>
