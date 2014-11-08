@@ -21,12 +21,9 @@ public class Customer implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	@Column(name="customer_id")
 	private String customerId;
 	
 	
@@ -72,14 +69,6 @@ public class Customer implements Serializable{
 
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getOrganisation() {

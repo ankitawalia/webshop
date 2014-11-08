@@ -22,12 +22,9 @@ public class Product implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -616837476986369128L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	@Column(name="product_id", nullable=false,unique=true)
 	private String productId;
 	
 	@Column(name="product_name")
@@ -51,14 +48,6 @@ public class Product implements Serializable{
 
 	public void setVersion(long version) {
 		this.version = version;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getProductId() {
