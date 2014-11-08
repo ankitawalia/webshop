@@ -1,5 +1,7 @@
 package com.tacton.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tacton.Exception.NoSuchShoppingCartException;
@@ -13,8 +15,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	private ShoppingCartDao shoppingCartDao;
 
 	@Override
-	public ShoppingCart findShoppingCartById(int cartId) throws NoSuchShoppingCartException {
-		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartById(cartId);
+	public List<ShoppingCart> findShoppingCartById(int cartId) throws NoSuchShoppingCartException {
+		List<ShoppingCart> shoppingCart = shoppingCartDao.findShoppingCartById(cartId);
 		return shoppingCart;
 		
 	}

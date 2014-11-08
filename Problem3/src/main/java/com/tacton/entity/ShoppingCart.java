@@ -30,6 +30,10 @@ public class ShoppingCart implements Serializable{
 	@Column(name="customer_ref_id")
 	private int customerId;
 	
+	@Column(name="created_date")
+	private Timestamp createdDate;
+	
+	
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -51,20 +55,6 @@ public class ShoppingCart implements Serializable{
 	public void setCreatedDate(Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}
-
-	public Timestamp getExpiresonDate() {
-		return expiresonDate;
-	}
-
-	public void setExpiresonDate(Timestamp expiresonDate) {
-		this.expiresonDate = expiresonDate;
-	}
-
-	@Column(name="created_date")
-	private Timestamp createdDate;
-	
-	@Column(name="expireson_date")
-	private Timestamp expiresonDate;
 
 	public int getCartId() {
 		return cartId;

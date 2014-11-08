@@ -20,7 +20,7 @@ public class ShoppingCartDaoImpl extends AbstractBaseDaoImpl<ShoppingCart> imple
 	}
 
 	@Override
-	public ShoppingCart findShoppingCartById(Object value)
+	public List<ShoppingCart> findShoppingCartById(Object value)
 			throws NoSuchShoppingCartException {
 		logger.info("Finding attribute with Id:" +(int)value);
 		this.namedQueryString = "getShoppingCartById";
@@ -29,7 +29,7 @@ public class ShoppingCartDaoImpl extends AbstractBaseDaoImpl<ShoppingCart> imple
 		{
 		 throw new NoSuchShoppingCartException("Shopping Cart not present");	
 		}
-		return shoppingCartList.get(0);
+		return shoppingCartList;
 	}
 	
 }

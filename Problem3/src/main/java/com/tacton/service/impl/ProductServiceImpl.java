@@ -1,5 +1,7 @@
 package com.tacton.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tacton.Exception.NoSuchProductException;
@@ -13,8 +15,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public Product findProductsByName(String productName) throws NoSuchProductException {
-		Product product = productDao.findProductsByName(productName);
+	public List<Product> findProductsByName(String productName) throws NoSuchProductException {
+		List<Product> product = productDao.findProductsByName(productName);
 		return product;
 		
 	}

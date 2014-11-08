@@ -24,7 +24,7 @@ public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements Prod
 	}
 
 	@Override
-	public Product findProductsByName(Object value)
+	public List<Product> findProductsByName(Object value)
 			throws NoSuchProductException {
 		this.namedQueryString = "getProductsByProductName";
 		 List<Product> productList= super.find("productName", value);
@@ -32,7 +32,7 @@ public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements Prod
 		 {
 			 throw new NoSuchProductException("Product not found");
 		 }
-		return productList.get(0);
+		return productList;
 	}
 
 }
