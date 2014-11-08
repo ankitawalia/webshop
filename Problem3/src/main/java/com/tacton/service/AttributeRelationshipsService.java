@@ -6,5 +6,5 @@ import com.tacton.entity.AttributeRelationships;
 
 public interface AttributeRelationshipsService {
 
-	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId,int order) throws NoSuchAttributeException;
+	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId) throws NoSuchAttributeException;
 }

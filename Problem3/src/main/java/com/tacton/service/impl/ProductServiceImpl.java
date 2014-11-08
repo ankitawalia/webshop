@@ -13,12 +13,19 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public Product findProductsByName(String productName, int productId) throws NoSuchProductException {
+	public Product findProductsByName(String productName) throws NoSuchProductException {
 		Product product = productDao.findProductsByName(productName);
-		product.setProductId(productId);
-		product.setProductName(productName);
 		return product;
 		
 	}
+
+	@Override
+	public void addProduct(Product product)
+			throws NoSuchProductException {
+		productDao.saveOrUpdate(product);
+		
+	}
+	
+	
 	
 }

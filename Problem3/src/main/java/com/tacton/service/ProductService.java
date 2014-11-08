@@ -5,6 +5,7 @@ import com.tacton.entity.Product;
 
 public interface ProductService {
 	
-	public Product findProductsByName(String productName,int productId) throws NoSuchProductException;
+	public Product findProductsByName(String productName) throws NoSuchProductException;
 
+	public void addProduct(Product product)throws NoSuchProductException;
 }

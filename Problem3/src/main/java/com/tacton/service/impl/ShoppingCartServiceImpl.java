@@ -15,7 +15,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	@Override
 	public ShoppingCart findShoppingCartById(int cartId) throws NoSuchShoppingCartException {
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartById(cartId);
-		shoppingCart.setCustomerId(cartId);
 		return shoppingCart;
 		
 	}

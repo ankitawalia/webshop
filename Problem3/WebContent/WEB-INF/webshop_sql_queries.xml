@@ -48,7 +48,7 @@ SELECT *
 		
 <![CDATA[
 SELECT *
-  FROM tacton.shopping_cart where cartid= :cartId
+  FROM tacton.shopping_cart where cartid= :cartId and customer_ref_id = :customerId
  
 ]]>
    </sql-query>

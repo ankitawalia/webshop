@@ -15,11 +15,9 @@ public class AttributeServiceImpl implements AttributeService {
 	private AttributeDao attributeDao;
 	
 	@Override
-	public Attribute findAttributesById(int attributeId, String attributeName)
+	public Attribute findAttributesById(int attributeId)
 			throws NoSuchAttributeException {
 		Attribute attribute = attributeDao.findAttributesById(attributeId);
-		attribute.setAttributeName(attributeName);
-		attribute.setAttributeId(attributeId);
 		return attribute;
 	}
 
@@ -27,7 +25,6 @@ public class AttributeServiceImpl implements AttributeService {
 	public Attribute findAllAttributesByType(Type type)
 			throws NoSuchAttributeException {
 		Attribute attribute = attributeDao.findAllAttributesByType(type);
-		attribute.setType(type);
 		return attribute;
 	}
 

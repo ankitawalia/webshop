@@ -2,6 +2,8 @@ package com.tacton.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.tacton.Exception.NoSuchProductException;
 import com.tacton.dao.ProductDao;
 import com.tacton.entity.Product;
@@ -10,6 +12,12 @@ public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements Prod
 
 	private String namedQueryString;
 	
+	protected EntityManager em;
+	
+	 public ProductDaoImpl(EntityManager em) {
+		    this.em = em;
+		  }
+	 
 	@Override
 	protected String getNamedQueryString() {
 		return namedQueryString;
@@ -26,8 +34,5 @@ public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements Prod
 		 }
 		return productList.get(0);
 	}
-
-	
-
 
 }

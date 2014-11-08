@@ -13,12 +13,10 @@ public class AttributeRelationshipsServiceImpl implements AttributeRelationships
 	private AttributeRelationshipsDao attributeRelationshipsDao;
 
 	@Override
-	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId, int order)
+	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId)
 			throws NoSuchAttributeException {
 	AttributeRelationships attributeRelationships = attributeRelationshipsDao.
 			findAllAttributesinAttributeGroup(parentId);
-	attributeRelationships.setOrder(order);
-	attributeRelationships.setParentId(parentId);
 		return attributeRelationships;
 	}
 	
