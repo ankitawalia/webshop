@@ -1,4 +1,5 @@
 RemoteSystemsTempFiles/**
+Servers/**
 *.pydevproject
 .metadata
 .gradle
@@ -31,4 +32,4 @@ local.properties
 .texlipse
 
 **/target
-**/build
+**/build/Servers/

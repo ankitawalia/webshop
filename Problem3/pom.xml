@@ -1,51 +1,64 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.tacton</groupId>
-    <artifactId>Problem3</artifactId>
-    <version>1.1.0</version>
-    <packaging>war</packaging>
-    <name>Tacton Solution</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.javacodegeeks.enterprise.rest.resteasy</groupId>
+	<artifactId>RESTEasyXMLExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
- 	<description>
-        Tacton code test assignment solution. 
-    </description>
-     <repositories>
-        <repository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Repository for Maven</name>
-            <url>http://download.java.net/maven/2/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
-    <dependencies>
-       
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>runtime</scope>
-        </dependency>
-        
- 		<dependency>
-  			<groupId>org.antlr</groupId>
- 			 <artifactId>antlr4-maven-plugin</artifactId>
-  			<version>4.3</version>
-  			<type>maven-plugin</type>
+	<repositories>
+		<repository>
+			<id>JBoss repository</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.4.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>3.0.4.Final</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.4.Final</version>
 		</dependency>
 		
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-maven-plugin</artifactId>
+			<version>4.3</version>
+			<type>maven-plugin</type>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -53,116 +66,118 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-commons-annotations</artifactId>
-            <version>3.3.0.ga</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-commons-annotations-3.3.0.ga.jar</systemPath>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.3.0.ga</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/hibernate-commons-annotations-3.3.0.ga.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.7.Final</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-core-4.3.7.Final.jar</systemPath>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.7.Final</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/hibernate-core-4.3.7.Final.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.7.Final</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-entitymanager-4.3.7.Final.jar</systemPath>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.7.Final</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/hibernate-entitymanager-4.3.7.Final.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar</systemPath>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.18.2-GA</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/javassist-3.18.2-GA.jar</systemPath>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.2-GA</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/javassist-3.18.2-GA.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-beans-4.1.1.RELEASE.jar</systemPath>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-beans-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-context-4.1.1.RELEASE.jar</systemPath>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-context-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-core-4.1.1.RELEASE.jar</systemPath>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-core-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/log4j-1.2.17.jar</systemPath>
-        </dependency>
-        <dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/log4j-1.2.17.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-jdbc-4.1.1.RELEASE.jar</systemPath>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-jdbc-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-orm-4.1.1.RELEASE.jar</systemPath>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-orm-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>4.1.1.RELEASE</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spring-tx-4.1.1.RELEASE.jar</systemPath>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.1.1.RELEASE</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/spring-tx-4.1.1.RELEASE.jar</systemPath>
 		</dependency>
-            
-    </dependencies>
-    
-    <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+
+	</dependencies>
+	
+	
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
