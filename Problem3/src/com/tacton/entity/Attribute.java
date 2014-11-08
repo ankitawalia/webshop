@@ -35,9 +35,6 @@ public class Attribute implements Serializable {
 	@Column(name="attribute_name")
 	private String attributeName;
 	
-	@Column(name="attribute_value")
-	private String attributeValue;
-	
 	@Enumerated(EnumType.STRING)
 	@Column(name="type")
 	private Type type;
@@ -68,14 +65,6 @@ public class Attribute implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
-	public String getAttributeValue() {
-		return attributeValue;
-	}
-
-	public void setAttributeValue(String attributeValue) {
-		this.attributeValue = attributeValue;
-	}
 
 	public Type getType() {
 		return type;
@@ -86,7 +75,6 @@ public class Attribute implements Serializable {
 		
 	}
 
-	
 	/*public void setType(Type type) {
 		for(Type attributeTypes: Type.values()){
 			this.type = attributeTypes;

@@ -6,7 +6,6 @@ import com.tacton.Exception.NoSuchCustomerException;
 import com.tacton.dao.CustomerDao;
 import com.tacton.entity.Customer;
 import com.tacton.service.CustomerService;
-import com.tacton.util.CustomerId;
 
 public class CustomerServiceImpl implements CustomerService {
 	
@@ -14,9 +13,9 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
 
 	@Override
-	public void findCustomerById(CustomerId customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException {
+	public void findCustomerById(int customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException {
 		Customer customer = customerDao.findCustomerById(customerId);
-		customer.setCustomerId(customerId.getId());
+		customer.setCustomerId(customerId);
 		customer.setCustomerName(customerName);
 		customer.setCustomerAddress(customerAddress);
 		customer.setOrganisationId(organisationId);

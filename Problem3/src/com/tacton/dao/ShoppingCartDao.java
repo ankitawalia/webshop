@@ -1,5 +1,10 @@
 package com.tacton.dao;
 
-public class ShoppingCartDao {
+import com.tacton.Exception.NoSuchShoppingCartException;
+import com.tacton.entity.ShoppingCart;
 
+
+public interface ShoppingCartDao extends Dao<ShoppingCart>{
+
+	public ShoppingCart findShoppingCartById(Object value) throws NoSuchShoppingCartException;
 }

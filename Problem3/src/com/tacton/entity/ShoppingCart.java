@@ -25,7 +25,7 @@ public class ShoppingCart implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cartid", nullable=false)
-	private int id;
+	private int cartId;
 	
 	@Column(name="customer_ref_id")
 	private int customerId;
@@ -65,14 +65,13 @@ public class ShoppingCart implements Serializable{
 	
 	@Column(name="expireson_date")
 	private Timestamp expiresonDate;
-	
 
-	public int getId() {
-		return id;
+	public int getCartId() {
+		return cartId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
 	}
 
 	public Product getProduct() {

@@ -32,8 +32,19 @@ public class ProductAttribute implements Serializable{
 	@Column(name="attribute_ref_id")
 	private int attributeId;
 	
+	public String getAttributeValue() {
+		return attributeValue;
+	}
+
+	public void setAttributeValue(String attributeValue) {
+		this.attributeValue = attributeValue;
+	}
+
 	@Column(name="order")
 	private int order;
+	
+	@Column(name="attribute_value")
+	private String attributeValue;
 
 	public int getId() {
 		return id;
