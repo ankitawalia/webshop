@@ -27,35 +27,35 @@ public class AttributeRelationships implements Serializable{
 	private int id;
 	
 	@Column(name="parent_id")
-	private String parentId;
+	private int parentId;
 	
 	@Column(name="child_id")
-	private String childId;
+	private int childId;
 	
 	@Column(name="order")
-	private String order;
+	private int order;
 	
-	public String getParentId() {
+	public int getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(String parentId) {
+	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
 
-	public String getChildId() {
+	public int getChildId() {
 		return childId;
 	}
 
-	public void setChildId(String childId) {
+	public void setChildId(int childId) {
 		this.childId = childId;
 	}
 
-	public String getOrder() {
+	public int getOrder() {
 		return order;
 	}
 
-	public void setOrder(String order) {
+	public void setOrder(int order) {
 		this.order = order;
 	}
 

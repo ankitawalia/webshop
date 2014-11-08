@@ -24,7 +24,7 @@ public class Customer implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String customerId;
+	private int customerId;
 	
 	
 	@Column(name="cust_name")
@@ -33,8 +33,8 @@ public class Customer implements Serializable{
 	@Column(name="cust_address")
 	private String customerAddress;
 	
-	@Column(name="cust_org")
-	private String organisation;
+	@Column(name="cust_org_id")
+	private int organisationId;
 	
 	@Column(name="credit")
 	private double credit;
@@ -47,6 +47,14 @@ public class Customer implements Serializable{
 	@Column(name="created_date")
 	private Date createdDate;
 	
+	public int getOrganisationId() {
+		return organisationId;
+	}
+
+	public void setOrganisationId(int organisationId) {
+		this.organisationId = organisationId;
+	}
+
 	public String getCustomerAddress() {
 		return customerAddress;
 	}
@@ -62,21 +70,13 @@ public class Customer implements Serializable{
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
-	public String getCustomerId() {
+
+	public int getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(String customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
-	}
-	
-	public String getOrganisation() {
-		return organisation;
-	}
-
-	public void setOrganisation(String organisation) {
-		this.organisation = organisation;
 	}
 
 	public double getCredit() {

@@ -27,6 +27,17 @@ public class ShoppingCart implements Serializable{
 	@Column(name="cartid", nullable=false)
 	private int id;
 	
+	@Column(name="customer_ref_id")
+	private int customerId;
+	
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Product product;
 	

@@ -30,7 +30,7 @@ public class Attribute implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String attributeId;
+	private int attributeId;
 	
 	@Column(name="attribute_name")
 	private String attributeName;
@@ -45,11 +45,11 @@ public class Attribute implements Serializable {
 	@ManyToMany
 	private Product product;
 
-	public String getAttributeId() {
+	public int getAttributeId() {
 		return attributeId;
 	}
 
-	public void setAttributeId(String attributeId) {
+	public void setAttributeId(int attributeId) {
 		this.attributeId = attributeId;
 	}
 

@@ -27,18 +27,13 @@ public class ProductAttribute implements Serializable{
 	private int id;
 	
 	@Column(name="product_ref_id")
-	private String productId;
+	private int productId;
 	
 	@Column(name="attribute_ref_id")
-	private String attributeId;
+	private int attributeId;
 	
-	public String getAttributeId() {
-		return attributeId;
-	}
-
-	public void setAttributeId(String attributeId) {
-		this.attributeId = attributeId;
-	}
+	@Column(name="order")
+	private int order;
 
 	public int getId() {
 		return id;
@@ -48,13 +43,28 @@ public class ProductAttribute implements Serializable{
 		this.id = id;
 	}
 
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
+	public int getAttributeId() {
+		return attributeId;
+	}
+
+	public void setAttributeId(int attributeId) {
+		this.attributeId = attributeId;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
 	
 }
