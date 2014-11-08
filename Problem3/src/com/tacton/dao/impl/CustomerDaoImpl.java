@@ -10,7 +10,7 @@ import com.tacton.entity.Customer;
 
 public class CustomerDaoImpl extends AbstractBaseDaoImpl<Customer> implements CustomerDao {
 	
-	private static Logger logger = Logger.getLogger(CustomerDao.class);
+	private static Logger logger = Logger.getLogger(CustomerDaoImpl.class);
 
     private String namedQueryString;
 	
@@ -19,10 +19,10 @@ public class CustomerDaoImpl extends AbstractBaseDaoImpl<Customer> implements Cu
 		return namedQueryString;
 	}
 	@Override
-	public Customer findCustomerById(String propertyName, Object value)  {
-		logger.info("Finding customer with Id" + value.toString());
+	public Customer findCustomerById(Object value)  {
+		logger.info("Finding customer with Id" + (int)value);
 		this.namedQueryString = "getCustomerByCustomerId";
-		List<Customer> customerList = super.find(propertyName, value);
+		List<Customer> customerList = super.find("customerId", value);
 		if(customerList.isEmpty()) {
 			throw new NoSuchCustomerException("Customer not found") ;
 		}

@@ -38,18 +38,9 @@ SELECT *
 		
 <![CDATA[
 SELECT *
-  FROM tacton.attribute where type= :type.ATTRIBUTE
+  FROM tacton.attribute where type= :type
  
 ]]>
    </sql-query>
    
-   <sql-query name="getAllAttributeGroupsByType">
-		<return alias="attribute" class="com.tacton.entity.Attribute" />
-		
-<![CDATA[
-SELECT *
-  FROM tacton.attribute where type= :type.ATTRIBUTE_GROUP
- 
-]]>
-   </sql-query>
 </hibernate-mapping>
