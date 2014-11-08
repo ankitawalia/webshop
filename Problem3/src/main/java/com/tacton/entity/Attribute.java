@@ -9,12 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 
 import com.tacton.util.Type;
 
@@ -39,9 +37,6 @@ public class Attribute implements Serializable {
 	@Column(name="type")
 	private Type type;
 
-	@ManyToMany
-	private Product product;
-
 	public int getAttributeId() {
 		return attributeId;
 	}
@@ -56,14 +51,6 @@ public class Attribute implements Serializable {
 
 	public void setAttributeName(String attributeName) {
 		this.attributeName = attributeName;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 	public Type getType() {

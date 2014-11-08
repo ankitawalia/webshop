@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -26,11 +27,11 @@ public class ProductAttribute implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="product_ref_id")
-	private int productId;
+	@JoinColumn(name="product_ref_id")
+	private Product product;
 	
-	@Column(name="attribute_ref_id")
-	private int attributeId;
+	@JoinColumn(name="attribute_ref_id")
+	private Attribute attribute;
 	
 	public String getAttributeValue() {
 		return attributeValue;
@@ -52,22 +53,6 @@ public class ProductAttribute implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
-	public int getAttributeId() {
-		return attributeId;
-	}
-
-	public void setAttributeId(int attributeId) {
-		this.attributeId = attributeId;
 	}
 
 	public int getOrder() {

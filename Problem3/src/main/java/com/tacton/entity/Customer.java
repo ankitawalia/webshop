@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +35,9 @@ public class Customer implements Serializable{
 	@Column(name="cust_address")
 	private String customerAddress;
 	
-	@Column(name="cust_org_id")
-	private int organisationId;
+	@OneToOne
+	@JoinColumn(name="cust_org_id")
+	private Organisation organisation;
 	
 	@Column(name="credit")
 	private double credit;
@@ -46,14 +49,6 @@ public class Customer implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")
 	private Date createdDate;
-	
-	public int getOrganisationId() {
-		return organisationId;
-	}
-
-	public void setOrganisationId(int organisationId) {
-		this.organisationId = organisationId;
-	}
 
 	public String getCustomerAddress() {
 		return customerAddress;

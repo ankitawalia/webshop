@@ -2,34 +2,31 @@ package com.tacton.dao.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.tacton.Exception.NoSuchShoppingCartException;
 import com.tacton.dao.ShoppingCartDao;
+import com.tacton.entity.Customer;
 import com.tacton.entity.ShoppingCart;
 
 public class ShoppingCartDaoImpl extends AbstractBaseDaoImpl<ShoppingCart> implements ShoppingCartDao{
 
-	private static Logger logger = Logger.getLogger(ShoppingCartDaoImpl.class);
+	protected EntityManager em;
+
+	 public ShoppingCartDaoImpl(EntityManager em) {
+		    this.em = em;
+		  }
 	
-	private String namedQueryString;
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public String getNamedQueryString() {
-		return namedQueryString;
-	}
-
-	@Override
-	public List<ShoppingCart> findShoppingCartById(Object value)
+	public List<ShoppingCart> findShoppingCartById(Customer customerId)
 			throws NoSuchShoppingCartException {
-		logger.info("Finding attribute with Id:" +(int)value);
-		this.namedQueryString = "getShoppingCartById";
-		List<ShoppingCart> shoppingCartList = super.find("cartId",value);
-		if(shoppingCartList.isEmpty())
-		{
-		 throw new NoSuchShoppingCartException("Shopping Cart not present");	
-		}
-		return shoppingCartList;
+		String queryString = "SELECT sc.cartId FROM shopping_cart sc,customer c where c.customerId=:customerId" ;
+	    Query query = em.createQuery(queryString);
+	    return query.getResultList();
+	
 	}
 	
 }

@@ -10,17 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="attribute_relationships",schema="tacton")
-public class AttributeRelationships implements Serializable{
+@Table(name="organisation",schema="tacton")
+public class Organisation implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int Id;
 	
 	@Column(name="parent_id")
 	private int parentId;
@@ -28,9 +28,14 @@ public class AttributeRelationships implements Serializable{
 	@Column(name="child_id")
 	private int childId;
 	
-	@Column(name="order")
-	private int order;
-	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
 	public int getParentId() {
 		return parentId;
 	}
@@ -47,20 +52,5 @@ public class AttributeRelationships implements Serializable{
 		this.childId = childId;
 	}
 
-	public int getOrder() {
-		return order;
-	}
-
-	public void setOrder(int order) {
-		this.order = order;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 }

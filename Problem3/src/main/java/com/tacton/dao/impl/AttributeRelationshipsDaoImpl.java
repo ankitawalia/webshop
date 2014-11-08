@@ -1,5 +1,7 @@
 package com.tacton.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -22,12 +24,13 @@ public class AttributeRelationshipsDaoImpl extends AbstractBaseDaoImpl<Attribute
 		return namedQueryString;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public AttributeRelationships findAllAttributesinAttributeGroup(Object value)
+	public List<AttributeRelationships> findAllAttributesinAttributeGroup(Object value)
 			throws NoSuchAttributeException {
 		    String queryString = "SELECT * FROM attribute_relationships ar GROUP BY ar.parent_id" ;
 		    Query query = em.createQuery(queryString);
-		    return (AttributeRelationships)query.getResultList();
+		    return query.getResultList();
 	}
 
 }

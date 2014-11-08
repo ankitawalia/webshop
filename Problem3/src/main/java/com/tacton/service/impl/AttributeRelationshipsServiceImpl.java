@@ -1,5 +1,7 @@
 package com.tacton.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tacton.Exception.NoSuchAttributeException;
@@ -13,9 +15,9 @@ public class AttributeRelationshipsServiceImpl implements AttributeRelationships
 	private AttributeRelationshipsDao attributeRelationshipsDao;
 
 	@Override
-	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId)
+	public List<AttributeRelationships> findAllAttributesinAttributeGroup(int parentId)
 			throws NoSuchAttributeException {
-	AttributeRelationships attributeRelationships = attributeRelationshipsDao.
+		List<AttributeRelationships> attributeRelationships = attributeRelationshipsDao.
 			findAllAttributesinAttributeGroup(parentId);
 		return attributeRelationships;
 	}

@@ -9,8 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,25 +27,15 @@ public class ShoppingCart implements Serializable{
 	@Column(name="cartid", nullable=false)
 	private int cartId;
 	
-	@Column(name="customer_ref_id")
-	private int customerId;
-	
 	@Column(name="created_date")
 	private Timestamp createdDate;
 	
-	
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="product_ref_id")
 	private Product product;
 	
-	@ManyToMany
+	@OneToMany
+	@JoinColumn(name="customer_ref_id")
 	private Customer customer;
 
 	public Timestamp getCreatedDate() {
@@ -79,5 +69,5 @@ public class ShoppingCart implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+	
 }

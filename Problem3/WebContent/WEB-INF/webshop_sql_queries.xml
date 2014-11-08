@@ -41,17 +41,7 @@ SELECT *
   FROM tacton.attribute where type= :type
  
 ]]>
-   </sql-query>
-   
-    <sql-query name="getShoppingCartById">
-		<return alias="shopping_cart" class="com.tacton.entity.ShoppingCart" />
-		
-<![CDATA[
-SELECT *
-  FROM tacton.shopping_cart where cartid= :cartId and customer_ref_id = :customerId
- 
-]]>
-   </sql-query>
+ </sql-query>
    
    
 </hibernate-mapping>

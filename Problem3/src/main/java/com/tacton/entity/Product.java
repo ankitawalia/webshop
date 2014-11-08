@@ -10,12 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 @Entity
 @Table(name="product",schema="tacton")
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Product implements Serializable{
 
 	/**
