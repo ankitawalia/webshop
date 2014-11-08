@@ -13,13 +13,13 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
 
 	@Override
-	public void findCustomerById(int customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException {
+	public Customer findCustomerById(int customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException {
 		Customer customer = customerDao.findCustomerById(customerId);
 		customer.setCustomerId(customerId);
 		customer.setCustomerName(customerName);
 		customer.setCustomerAddress(customerAddress);
 		customer.setOrganisationId(organisationId);
-		customerDao.saveOrUpdate(customer);
+		return customer;
 		
 	}
 	

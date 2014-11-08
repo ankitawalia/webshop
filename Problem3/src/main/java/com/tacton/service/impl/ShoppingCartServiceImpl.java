@@ -13,10 +13,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	private ShoppingCartDao shoppingCartDao;
 
 	@Override
-	public void findShoppingCartById(int cartId) throws NoSuchShoppingCartException {
+	public ShoppingCart findShoppingCartById(int cartId) throws NoSuchShoppingCartException {
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartById(cartId);
 		shoppingCart.setCustomerId(cartId);
-		shoppingCartDao.saveOrUpdate(shoppingCart);
+		return shoppingCart;
 		
 	}
 	

@@ -1,9 +1,10 @@
 package com.tacton.service;
 
 import com.tacton.Exception.NoSuchAttributeException;
+import com.tacton.entity.AttributeRelationships;
 
 
 public interface AttributeRelationshipsService {
 
-	public void findAllAttributesinAttributeGroup(int parentId,int order) throws NoSuchAttributeException;
+	public AttributeRelationships findAllAttributesinAttributeGroup(int parentId,int order) throws NoSuchAttributeException;
 }

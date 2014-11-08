@@ -15,20 +15,20 @@ public class AttributeServiceImpl implements AttributeService {
 	private AttributeDao attributeDao;
 	
 	@Override
-	public void findAttributesById(int attributeId, String attributeName)
+	public Attribute findAttributesById(int attributeId, String attributeName)
 			throws NoSuchAttributeException {
 		Attribute attribute = attributeDao.findAttributesById(attributeId);
 		attribute.setAttributeName(attributeName);
 		attribute.setAttributeId(attributeId);
-		attributeDao.saveOrUpdate(attribute);
+		return attribute;
 	}
 
 	@Override
-	public void findAllAttributesByType(Type type)
+	public Attribute findAllAttributesByType(Type type)
 			throws NoSuchAttributeException {
 		Attribute attribute = attributeDao.findAllAttributesByType(type);
 		attribute.setType(type);
-		attributeDao.saveOrUpdate(attribute);
+		return attribute;
 	}
 
 }

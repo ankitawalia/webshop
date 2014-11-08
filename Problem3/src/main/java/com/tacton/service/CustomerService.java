@@ -1,9 +1,10 @@
 package com.tacton.service;
 
 import com.tacton.Exception.NoSuchCustomerException;
+import com.tacton.entity.Customer;
 
 public interface CustomerService {
     
-	public void findCustomerById(int customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException;
+	public Customer findCustomerById(int customerId, String customerName, String customerAddress, int organisationId) throws NoSuchCustomerException;
 	
 }
