@@ -17,25 +17,35 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="organisation",schema="tacton")
-public class Organisation implements Serializable{
+@Table(name = "organisation", schema = "tacton")
+public class Organisation implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
-	
-	@Column(name="parent_id")
+
+	@Column(name = "parent_id")
 	private Integer parentId;
-	
-	@OneToMany(mappedBy="parentId")
-	private Set<Organisation> childOrgs; 
-	
-	
+
+	@OneToMany(mappedBy = "parentId", fetch=FetchType.EAGER)
+	private Set<Organisation> childOrgs;
+
+	@Column(name = "org_name")
+	private String orgName;
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
 	public Integer getId() {
 		return Id;
 	}
@@ -60,5 +70,4 @@ public class Organisation implements Serializable{
 		this.childOrgs = childOrgs;
 	}
 
-	
 }

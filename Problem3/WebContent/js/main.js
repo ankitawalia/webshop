@@ -206,15 +206,36 @@ function renderAttributeGroups(data) {
 
 function renderOrganisations(data) {
 	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+	var maxRows = list[list.length-1].maxRow;
+	var maxColumns = list[list.length-1].maxColumn;
+	
+	var table = $('<table><tbody>');
+	for(var i=1; i<=maxRows; i++){
+		var row = $('<tr></tr>').addClass('row' + i);
+		table.append(row);
+		for(var j=1; j<=maxColumns; j++) {
+		var column = $('<td></td>').addClass('col' + j);
+		row.append(column);
+		}
+	}
+	table.append("</tbody></table>");
+	
+	$('#orgDiv').append(table);
 
-	$('#orgselectmenu option').remove();
+	/*$('#orgselectmenu option').remove();
 	$.each(list, function(index, attributeGroup) {
 		$('#orgselectmenu').append('<option value=' + attributeGroup.id+ '>'+attributeGroup.orgName+'</option>');
 	});
 	$( "#orgselectmenu" ).on( "selectmenuselect", function( event, ui ) {
 		var value = ui.item.value;
 		findChildOrganisations(value);
-	} );
+	} );*/
+	$.each(list, function(index, orgDto) {
+		var orgName = orgDto.orgName;
+		var row = orgDto.row;
+		var column = orgDto.column;
+		$(".row"+row + " .col"+column).text(orgName);
+	});
 }
 
 function renderAttributeList(data) {

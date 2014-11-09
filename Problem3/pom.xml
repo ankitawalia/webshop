@@ -208,6 +208,12 @@
 	<artifactId>spring-expression</artifactId>
 	<version>4.1.1.RELEASE</version>
 </dependency>
+<dependency>
+	<groupId>com.google.guava</groupId>
+	<artifactId>guava</artifactId>
+	<version>18.0</version>
+</dependency>
+		
 
 	</dependencies>
 

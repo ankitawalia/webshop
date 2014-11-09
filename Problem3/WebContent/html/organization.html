@@ -46,6 +46,18 @@
 	select {
 		width: 200px;
 	}
+	table, tr, th, td {
+   border: 1px solid black;
+   min-width:200px;
+   height:30px;
+   
+} 
+
+td {
+font-size:1em;
+color:BLUE;
+text-align:center;
+}
 	</style>
 	<script>findAllOrganisations();</script>
 </head>
@@ -58,18 +70,7 @@
 </div>
 
 
-<h2 class="demoHeaders">Organisations available in the system</h2>
-<select id="orgselectmenu"></select>
-
-<div class="ui-widget">
-<ul id="sortable" class="ui-state-highlight">
-</ul>
-</div>
-
-
-
-
-
+<h2 class="demoHeaders"><div id="orgDiv" class="ui-widget">Organisation Tree</div></h2>
 
 <script src="js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.2/jquery-ui.js"></script>
@@ -108,6 +109,7 @@ $( "#dialog-link" ).click(function( event ) {
 });
 
 $( "#orgselectmenu" ).selectmenu();
+
 
 </script>
 </body>
