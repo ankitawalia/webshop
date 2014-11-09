@@ -1,6 +1,7 @@
 // The root URL for the RESTful services
 var rootURL = "api";
 var attributeApiUrl = rootURL+ "/attributes/group";
+var productApiUrl = rootURL+ "/product/getallproducts";
 var organisationApiUrl = rootURL+ "/organisation";
 
 var currentWine;
@@ -140,6 +141,15 @@ function findAllProducts() {
 	});
 }
 
+function findAllAttributesForProduct(productId) {
+	$.ajax({
+		type: 'GET',
+		url: productApiUrl+ "/"+ productId,
+		dataType: "json",
+		success: renderProductAttributeList
+	});
+}
+
 function addWine() {
 	console.log('addWine');
 	$.ajax({
@@ -256,6 +266,23 @@ function renderProductList(data) {
 	$('#productselectmenu option').remove();
 	$.each(list, function(index, productList) {
 		$('#productselectmenu').append('<option value =' + productList.productId+ '>'+productList.productName+'</option>');
+	});
+	$( "#productselectmenu" ).on( "selectmenuselect", function( event, ui ) {
+		var value = ui.item.value;
+		findAllAttributesForProduct(value);
+	} );
+	
+}
+function renderProductAttributeList(data){
+	
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+	$('#sortable h3').remove();
+	$('#sortable li').remove();
+	$('#sortable br').remove();
+	$('#sortable').append('<h3> Attribute Name</h3>');
+	$.each(list, function(index, attributeGroup) {
+		$('#sortable').append('<li> ' + attributeGroup.productId.productName + "</li></br>");
+		$('#sortable').append('<li> ' + attributeGroup.attributeId.attributeName + "</li></br>");
 	});
 }
 

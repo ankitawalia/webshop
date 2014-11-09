@@ -2,8 +2,7 @@ package com.tacton.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.springframework.stereotype.Component;
 
 import com.tacton.Exception.NoSuchProductException;
@@ -26,17 +25,17 @@ public class ProductAttributeDaoImpl extends AbstractBaseDaoImpl<ProductAttribut
 		String queryString = "SELECT a.attribute_name,pa.attribute_value FROM product_attributes pa,attribute a " +
 			 "WHERE pa.product_ref_id=:productId and a.attribute_id=:attributeId" ;
 	    Query query = (Query)getHibernateSession().createSQLQuery(queryString);
-	    return (ProductAttribute)query.getSingleResult();
+	    return (ProductAttribute)query.list().get(0);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductAttribute> findAllAttributesForProduct(int productId) {
-		String queryString = "SELECT a.attribute_name FROM product_attributes pa,attribute a " +
-				 "WHERE pa.product_ref_id=:productId and pa.attribute_ref_id=a.attribute_id" ;
-		    Query query = (Query)getHibernateSession().createSQLQuery(queryString);
-		return query.getResultList();
+		String queryString = "SELECT * FROM product_attributes pa " +
+				 "WHERE pa.product_ref_id=:productId" ;
+		    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(ProductAttribute.class).setParameter("productId", productId);
+		return query.list();
 	}
 
 }
