@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,30 +25,63 @@ public class AttributeRelationships implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="parent_id")
-	private int parentId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn( referencedColumnName = "attribute_id", name = "parent_id", nullable = false)
+	private Attribute parentId;
 	
-	@Column(name="child_id")
-	private int childId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(referencedColumnName = "attribute_id",name = "child_id", nullable = false)
+	private Attribute childId;
 	
 	@Column(name="order")
 	private int order;
 	
-	@JoinColumn(name="attribute_ref_id")
-	private Attribute attribute;
-	public int getParentId() {
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((childId == null) ? 0 : childId.hashCode());
+		result = prime * result
+				+ ((parentId == null) ? 0 : parentId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AttributeRelationships other = (AttributeRelationships) obj;
+		if (childId == null) {
+			if (other.childId != null)
+				return false;
+		} else if (!childId.equals(other.childId))
+			return false;
+		if (parentId == null) {
+			if (other.parentId != null)
+				return false;
+		} else if (!parentId.equals(other.parentId))
+			return false;
+		return true;
+	}
+
+	public Attribute getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(int parentId) {
+	public void setParentId(Attribute parentId) {
 		this.parentId = parentId;
 	}
 
-	public int getChildId() {
+	public Attribute getChildId() {
 		return childId;
 	}
 
-	public void setChildId(int childId) {
+	public void setChildId(Attribute childId) {
 		this.childId = childId;
 	}
 

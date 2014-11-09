@@ -48,8 +48,6 @@
 	}
 	</style>
 	<script>findAllAttributeGroups();</script>
-	<script>$(".ui-state-highlight").hide();</script>
-	<script>$(".ui-state-error").hide();</script>
 </head>
 <body>
 
@@ -60,30 +58,18 @@
 </div>
 
 
-<!-- Progressbar -->
-<h2 class="demoHeaders">Selectmenu</h2>
+<h2 class="demoHeaders">Attribute Groups available in the system</h2>
 <select id="selectmenu"></select>
 
-
-
-
-
-
-<!-- Highlight / Error -->
-<h2 class="demoHeaders">Highlight / Error</h2>
 <div class="ui-widget">
-	<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
-		<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-		<strong>Hey!</strong> Sample ui-state-highlight style.</p>
-	</div>
+<ul id="sortable" class="ui-state-highlight">
+</ul>
 </div>
-<br>
-<div class="ui-widget">
-	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
-		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-		<strong>Alert:</strong> Sample ui-state-error style.</p>
-	</div>
-</div>
+
+
+
+
+
 
 <script src="js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.2/jquery-ui.js"></script>
@@ -123,8 +109,7 @@ $( "#dialog-link" ).click(function( event ) {
 
 $( "#selectmenu" ).selectmenu();
 
-$( "#menu" ).menu();
-
+$("#sortable").sortable();
 
 // Hover states on the static widgets
 $( "#dialog-link, #icons li" ).hover(

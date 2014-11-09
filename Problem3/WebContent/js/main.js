@@ -1,5 +1,6 @@
 // The root URL for the RESTful services
 var rootURL = "api";
+var attributeApiUrl = rootURL+ "/attributes/group"
 
 var currentWine;
 
@@ -72,13 +73,12 @@ function findAllAttributeGroups() {
 	});
 }
 
-function findByName(searchKey) {
-	console.log('findByName: ' + searchKey);
+function findAttriburesForAttributeGroup(attributeGroupId) {
 	$.ajax({
 		type: 'GET',
-		url: rootURL + '/search/' + searchKey,
+		url: attributeApiUrl+ "/"+ attributeGroupId,
 		dataType: "json",
-		success: renderList 
+		success: renderAttributeList
 	});
 }
 
@@ -147,23 +147,27 @@ function deleteWine() {
 	});
 }
 
-function renderList(data) {
-	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
-	var list = data == null ? [] : (data instanceof Array ? data : [data]);
-
-	$('#wineList li').remove();
-	$.each(list, function(index, wine) {
-		$('#wineList').append('<li><a href="#" data-identity="' + wine.id + '">'+wine.name+'</a></li>');
-	});
-}
 
 function renderAttributeGroups(data) {
-	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
 	var list = data == null ? [] : (data instanceof Array ? data : [data]);
 
 	$('#selectmenu option').remove();
 	$.each(list, function(index, attributeGroup) {
-		$('#selectmenu').append('<option id=' + attributeGroup.attributeId+ '>'+attributeGroup.attributeName+'</option>');
+		$('#selectmenu').append('<option value=' + attributeGroup.attributeId+ '>'+attributeGroup.attributeName+'</option>');
+	});
+	$( "#selectmenu" ).on( "selectmenuselect", function( event, ui ) {
+		var value = ui.item.value;
+		findAttriburesForAttributeGroup(value)
+	} );
+}
+
+function renderAttributeList(data) {
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+	$('#sortable h3').remove();
+	$('#sortable li').remove();
+	$('#sortable').append('<h3> Attribute Name</h3>');
+	$.each(list, function(index, attributeGroup) {
+		$('#sortable').append('<li> ' + attributeGroup.childId.attributeName + "</li></br>");
 	});
 }
 
