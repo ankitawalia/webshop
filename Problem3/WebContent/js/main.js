@@ -87,7 +87,7 @@ function findAttriburesForAttributeGroup(attributeGroupId) {
 function findChildOrganisations(attributeGroupId) {
 	$.ajax({
 		type: 'GET',
-		url: organisationApiUrl+ "/child"+ attributeGroupId,
+		url: organisationApiUrl+ "/child/"+ attributeGroupId,
 		dataType: "json",
 		success: renderChildOrganisations
 	});
@@ -207,11 +207,11 @@ function renderAttributeGroups(data) {
 function renderOrganisations(data) {
 	var list = data == null ? [] : (data instanceof Array ? data : [data]);
 
-	$('#selectmenu option').remove();
+	$('#orgselectmenu option').remove();
 	$.each(list, function(index, attributeGroup) {
-		$('#selectmenu').append('<option value=' + attributeGroup.attributeId+ '>'+attributeGroup.attributeName+'</option>');
+		$('#orgselectmenu').append('<option value=' + attributeGroup.id+ '>'+attributeGroup.orgName+'</option>');
 	});
-	$( "#selectmenu" ).on( "selectmenuselect", function( event, ui ) {
+	$( "#orgselectmenu" ).on( "selectmenuselect", function( event, ui ) {
 		var value = ui.item.value;
 		findChildOrganisations(value);
 	} );

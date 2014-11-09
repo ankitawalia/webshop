@@ -32,7 +32,8 @@ public class OrganisationDaoImpl extends AbstractBaseDaoImpl<Attribute> implemen
 	public List<Organisation> findAllOrganisations() {
 		String queryString = "SELECT * from organisation" ;
 	    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(Organisation.class);
-	    return query.list();
+	    List<Organisation> orgList =  query.list();
+	    return orgList;
 	}
 
 	@Override

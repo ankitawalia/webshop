@@ -2,7 +2,9 @@ package com.tacton.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,21 +27,28 @@ public class Organisation implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int Id;
+	private Integer Id;
 	
-	@Column(name="parent_id")
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="parent_id")
 	private Organisation parentId;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="parent_id")
-	private List<Organisation> childOrgs; 
+	@Column(name="org_name")
+	private String orgName;
 	
-	
-	public int getId() {
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public Integer getId() {
 		return Id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		Id = id;
 	}
 
@@ -50,12 +60,6 @@ public class Organisation implements Serializable{
 		this.parentId = parentId;
 	}
 
-	public List<Organisation> getChildOrgs() {
-		return childOrgs;
-	}
 
-	public void setChildOrgs(List<Organisation> childOrgs) {
-		this.childOrgs = childOrgs;
-	}
 	
 }

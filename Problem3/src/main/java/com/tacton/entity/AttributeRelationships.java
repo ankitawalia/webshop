@@ -35,6 +35,7 @@ public class AttributeRelationships implements Serializable{
 	
 	@Column(name="order")
 	private int order;
+	
 
 	@Override
 	public int hashCode() {
@@ -68,17 +69,12 @@ public class AttributeRelationships implements Serializable{
 		return true;
 	}
 
-	
-	@JoinColumn(name="attribute_ref_id")
-	private Attribute attribute;
-	
+	public Attribute getParentId() {
+		return parentId;
+	}
 
 	public void setParentId(Attribute parentId) {
 		this.parentId = parentId;
-	}
-
-	public Attribute getParentId() {
-		return parentId;
 	}
 
 	public Attribute getChildId() {

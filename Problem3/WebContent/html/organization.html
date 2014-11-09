@@ -59,7 +59,7 @@
 
 
 <h2 class="demoHeaders">Organisations available in the system</h2>
-<select id="selectmenu"></select>
+<select id="orgselectmenu"></select>
 
 <div class="ui-widget">
 <ul id="sortable" class="ui-state-highlight">
@@ -107,19 +107,7 @@ $( "#dialog-link" ).click(function( event ) {
 	event.preventDefault();
 });
 
-$( "#selectmenu" ).selectmenu();
-
-$("#sortable").sortable();
-
-// Hover states on the static widgets
-$( "#dialog-link, #icons li" ).hover(
-	function() {	
-		$( this ).addClass( "ui-state-hover" );
-	},
-	function() {
-		$( this ).removeClass( "ui-state-hover" );
-	}
-);
+$( "#orgselectmenu" ).selectmenu();
 
 </script>
 </body>
