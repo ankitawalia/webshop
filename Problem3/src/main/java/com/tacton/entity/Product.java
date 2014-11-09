@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Version;
 
 @Entity
 @Table(name="product",schema="tacton")
@@ -27,24 +26,12 @@ public class Product implements Serializable{
 	@Column(name="product_name")
 	private String productName;
 	
-	@Column
-	@Version
-	private long version;
-	
 	public String getProductName() {
 		return productName;
 	}
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-
-	public long getVersion() {
-		return version;
-	}
-
-	public void setVersion(long version) {
-		this.version = version;
 	}
 
 	public int getProductId() {

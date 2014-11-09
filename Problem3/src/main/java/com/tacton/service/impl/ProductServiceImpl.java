@@ -3,12 +3,16 @@ package com.tacton.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tacton.Exception.NoSuchProductException;
 import com.tacton.dao.ProductDao;
 import com.tacton.entity.Product;
 import com.tacton.service.ProductService;
 
+@Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
@@ -26,6 +30,12 @@ public class ProductServiceImpl implements ProductService {
 			throws NoSuchProductException {
 		productDao.saveOrUpdate(product);
 		
+	}
+
+	@Override
+	public List<Product> findAllProducts() {
+		List<Product> product = productDao.findAllProducts();
+		return product;
 	}
 	
 	

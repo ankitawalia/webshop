@@ -10,4 +10,6 @@ public interface ProductService {
 	public List<Product> findProductsByName(String productName) throws NoSuchProductException;
 
 	public void addProduct(Product product)throws NoSuchProductException;
+
+	public List<Product> findAllProducts();
 }

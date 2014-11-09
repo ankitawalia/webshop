@@ -36,6 +36,7 @@ public class AttributeRelationships implements Serializable{
 	@Column(name="order")
 	private int order;
 	
+<<<<<<< Updated upstream
 
 	@Override
 	public int hashCode() {
@@ -70,6 +71,12 @@ public class AttributeRelationships implements Serializable{
 	}
 
 	public Attribute getParentId() {
+=======
+	@JoinColumn(name="attribute_ref_id")
+	private Attribute attribute;
+	
+	public int getParentId() {
+>>>>>>> Stashed changes
 		return parentId;
 	}
 

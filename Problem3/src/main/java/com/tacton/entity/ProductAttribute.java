@@ -7,11 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name="product_attributes",schema="tacton")
@@ -22,32 +18,32 @@ public class ProductAttribute implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Attribute getAttribute() {
-		return attribute;
-	}
-
-	public void setAttribute(Attribute attribute) {
-		this.attribute = attribute;
-	}
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@JoinColumn(name="product_ref_id")
-	private Product product;
+	@Column(name="product_ref_id")
+	private int productId;
 	
-	@JoinColumn(name="attribute_ref_id")
-	private Attribute attribute;
+	@Column(name="attribute_ref_id")
+	private int attributeId;
 	
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public int getAttributeId() {
+		return attributeId;
+	}
+
+	public void setAttributeId(int attributeId) {
+		this.attributeId = attributeId;
+	}
+
 	public String getAttributeValue() {
 		return attributeValue;
 	}

@@ -1,7 +1,7 @@
 // The root URL for the RESTful services
 var rootURL = "api";
-var attributeApiUrl = rootURL+ "/attributes/group"
-var organisationApiUrl = rootURL+ "/organisation"
+var attributeApiUrl = rootURL+ "/attributes/group";
+var organisationApiUrl = rootURL+ "/organisation";
 
 var currentWine;
 
@@ -130,6 +130,16 @@ function findById(id) {
 	});
 }
 
+function findAllProducts() {
+	console.log('findAllAttributes');
+	$.ajax({
+		type: 'GET',
+		url: rootURL+"/product/getallproducts",
+		dataType: "json", // data type of response
+		success: renderProductList
+	});
+}
+
 function addWine() {
 	console.log('addWine');
 	$.ajax({
@@ -215,6 +225,16 @@ function renderAttributeList(data) {
 	$('#sortable').append('<h3> Attribute Name</h3>');
 	$.each(list, function(index, attributeGroup) {
 		$('#sortable').append('<li> ' + attributeGroup.childId.attributeName + "</li></br>");
+	});
+}
+
+function renderProductList(data) {
+	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+
+	$('#productselectmenu option').remove();
+	$.each(list, function(index, productList) {
+		$('#productselectmenu').append('<option value =' + productList.productId+ '>'+productList.productName+'</option>');
 	});
 }
 
