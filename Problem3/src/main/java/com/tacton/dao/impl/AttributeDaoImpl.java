@@ -3,12 +3,17 @@ package com.tacton.dao.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Service;
 
 import com.tacton.Exception.NoSuchAttributeException;
 import com.tacton.dao.AttributeDao;
 import com.tacton.entity.Attribute;
 import com.tacton.util.Type;
 
+@Service
 public class AttributeDaoImpl extends AbstractBaseDaoImpl<Attribute> implements AttributeDao{
 
 	private static Logger logger = Logger.getLogger(AttributeDaoImpl.class);
@@ -34,16 +39,12 @@ public class AttributeDaoImpl extends AbstractBaseDaoImpl<Attribute> implements 
 	}
 	
 	@Override
-	public Attribute findAllAttributesByType(Type type)
+	public List<Attribute> findAllAttributesByType(Type type)
 			throws NoSuchAttributeException {
 		logger.info("Finding attribute with Type:" +type);
-		this.namedQueryString = "getAllAttributesByType";
-		List<Attribute> attributesList = super.find("type",type);
-		if(attributesList.isEmpty())
-		{
-		 throw new NoSuchAttributeException("Attribute not present");	
-		}
-		return attributesList.get(0);
+		String queryString = "SELECT * from attribute where type=:type" ;
+	    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(Attribute.class).setParameter("type", type.toString());
+	    return query.list();
 	}
 	
 	

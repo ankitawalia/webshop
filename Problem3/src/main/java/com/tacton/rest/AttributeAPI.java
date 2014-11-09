@@ -1,29 +1,32 @@
 package com.tacton.rest;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.tacton.entity.Attribute;
 import com.tacton.service.AttributeService;
+import com.tacton.util.Type;
 
-@Path("/attribute")
-public class AttributeAPI {
+@Path("/attributes")
+@Component
+public class AttributeAPI extends SpringBeanAutowiringSupport {
 	
 	@Autowired
 	private AttributeService attributeService;
 
 	@GET
-	@Path("/get/all")
+	@Path("/group")
 	@Produces("application/json")
-	public Attribute getAttributesInJSON() {
-
-		Attribute attr = new Attribute();
-		attr.setAttributeName("test");
-		return attr; 
-
+	public List<Attribute> getAllAttributesGroup() {
+		List<Attribute> attribList = attributeService.findAllAttributesByType(Type.ATTRIBUTE_GROUP); 
+		return attribList;
 	}
 
 }

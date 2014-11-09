@@ -15,7 +15,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name="product_attributes",schema="tacton")
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class ProductAttribute implements Serializable{
 
 	/**

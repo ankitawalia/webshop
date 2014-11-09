@@ -59,12 +59,4 @@ public class Attribute implements Serializable {
 		
 	}
 
-	/*public void setType(Type type) {
-		for(Type attributeTypes: Type.values()){
-			this.type = attributeTypes;
-	}
-		
-	}
-*/
-	
 }
