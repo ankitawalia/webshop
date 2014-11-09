@@ -1,12 +1,16 @@
 package com.tacton.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,10 +27,12 @@ public class Organisation implements Serializable{
 	private int Id;
 	
 	@Column(name="parent_id")
-	private int parentId;
+	private Organisation parentId;
 	
-	@Column(name="child_id")
-	private int childId;
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="parent_id")
+	private List<Organisation> childOrgs; 
+	
 	
 	public int getId() {
 		return Id;
@@ -36,21 +42,20 @@ public class Organisation implements Serializable{
 		Id = id;
 	}
 
-	public int getParentId() {
+	public Organisation getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(int parentId) {
+	public void setParentId(Organisation parentId) {
 		this.parentId = parentId;
 	}
 
-	public int getChildId() {
-		return childId;
+	public List<Organisation> getChildOrgs() {
+		return childOrgs;
 	}
 
-	public void setChildId(int childId) {
-		this.childId = childId;
+	public void setChildOrgs(List<Organisation> childOrgs) {
+		this.childOrgs = childOrgs;
 	}
-
 	
 }

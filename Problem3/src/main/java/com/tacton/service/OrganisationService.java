@@ -1,9 +1,15 @@
 package com.tacton.service;
 
-import com.tacton.entity.Attribute;
+import java.util.List;
+
+import com.tacton.entity.Organisation;
 
 public interface OrganisationService {
 
-    public Attribute findOrganisationById(int attributeId);
+    public Organisation findOrganisationById(int orgId);
+    
+    public List<Organisation> findAllOrganisations();
+    
+    public List<Organisation> findChildOrganisations(int parentOrgId);
 	
 }

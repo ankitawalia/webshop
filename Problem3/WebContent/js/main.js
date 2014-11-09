@@ -1,6 +1,7 @@
 // The root URL for the RESTful services
 var rootURL = "api";
 var attributeApiUrl = rootURL+ "/attributes/group"
+var organisationApiUrl = rootURL+ "/organisation"
 
 var currentWine;
 
@@ -82,6 +83,38 @@ function findAttriburesForAttributeGroup(attributeGroupId) {
 	});
 }
 
+
+function findChildOrganisations(attributeGroupId) {
+	$.ajax({
+		type: 'GET',
+		url: organisationApiUrl+ "/child"+ attributeGroupId,
+		dataType: "json",
+		success: renderChildOrganisations
+	});
+}
+
+function renderChildOrganisations(data) {
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+	$('#sortable h3').remove();
+	$('#sortable li').remove();
+	$('#sortable br').remove();
+	$('#sortable').append('<h3> Attribute Name</h3>');
+	$.each(list, function(index, attributeGroup) {
+		$('#sortable').append('<li> ' + attributeGroup.childId.attributeName + "</li></br>");
+	});
+}
+
+
+
+function findAllOrganisations() {
+	$.ajax({
+		type: 'GET',
+		url: organisationApiUrl+"/all",
+		dataType: "json", // data type of response
+		success: renderOrganisations
+	});
+}
+
 function findById(id) {
 	console.log('findById: ' + id);
 	$.ajax({
@@ -157,7 +190,20 @@ function renderAttributeGroups(data) {
 	});
 	$( "#selectmenu" ).on( "selectmenuselect", function( event, ui ) {
 		var value = ui.item.value;
-		findAttriburesForAttributeGroup(value)
+		findAttriburesForAttributeGroup(value);
+	} );
+}
+
+function renderOrganisations(data) {
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+
+	$('#selectmenu option').remove();
+	$.each(list, function(index, attributeGroup) {
+		$('#selectmenu').append('<option value=' + attributeGroup.attributeId+ '>'+attributeGroup.attributeName+'</option>');
+	});
+	$( "#selectmenu" ).on( "selectmenuselect", function( event, ui ) {
+		var value = ui.item.value;
+		findChildOrganisations(value);
 	} );
 }
 
@@ -165,12 +211,12 @@ function renderAttributeList(data) {
 	var list = data == null ? [] : (data instanceof Array ? data : [data]);
 	$('#sortable h3').remove();
 	$('#sortable li').remove();
+	$('#sortable br').remove();
 	$('#sortable').append('<h3> Attribute Name</h3>');
 	$.each(list, function(index, attributeGroup) {
 		$('#sortable').append('<li> ' + attributeGroup.childId.attributeName + "</li></br>");
 	});
 }
-
 
 function renderDetails(wine) {
 	$('#wineId').val(wine.id);
