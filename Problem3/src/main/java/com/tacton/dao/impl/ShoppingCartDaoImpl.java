@@ -23,7 +23,7 @@ public class ShoppingCartDaoImpl extends AbstractBaseDaoImpl<ShoppingCart> imple
 	@Override
 	public List<ShoppingCart> findShoppingCartById(Customer customerId)
 			throws NoSuchShoppingCartException {
-		String queryString = "SELECT sc.cartId FROM shopping_cart sc,customer c where c.customerId=:customerId" ;
+		String queryString = "SELECT sc.cartId FROM shopping_cart sc,customer c where c.customer_Id=:customerId" ;
 	    Query query = em.createQuery(queryString);
 	    return query.getResultList();
 	

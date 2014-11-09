@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +32,8 @@ public class AttributeRelationships implements Serializable{
 	@Column(name="order")
 	private int order;
 	
+	@JoinColumn(name="attribute_ref_id")
+	private Attribute attribute;
 	public int getParentId() {
 		return parentId;
 	}

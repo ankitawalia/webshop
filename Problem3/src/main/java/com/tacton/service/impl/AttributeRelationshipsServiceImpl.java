@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tacton.Exception.NoSuchAttributeException;
 import com.tacton.dao.AttributeRelationshipsDao;
+import com.tacton.entity.Attribute;
 import com.tacton.entity.AttributeRelationships;
 import com.tacton.service.AttributeRelationshipsService;
 
@@ -15,10 +16,10 @@ public class AttributeRelationshipsServiceImpl implements AttributeRelationships
 	private AttributeRelationshipsDao attributeRelationshipsDao;
 
 	@Override
-	public List<AttributeRelationships> findAllAttributesinAttributeGroup(int parentId)
+	public List<AttributeRelationships> findAllAttributesinAttributeGroup(int parentId,Attribute attribute)
 			throws NoSuchAttributeException {
 		List<AttributeRelationships> attributeRelationships = attributeRelationshipsDao.
-			findAllAttributesinAttributeGroup(parentId);
+			findAllAttributesinAttributeGroup(parentId,attribute);
 		return attributeRelationships;
 	}
 	

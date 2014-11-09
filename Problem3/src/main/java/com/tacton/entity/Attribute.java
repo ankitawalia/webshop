@@ -11,14 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import com.tacton.util.Type;
 
 @Entity
 @Table(name="attribute",schema="tacton")
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Attribute implements Serializable {
 
 	/**
@@ -28,6 +24,7 @@ public class Attribute implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="attribute_id")
 	private int attributeId;
 	
 	@Column(name="attribute_name")
