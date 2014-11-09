@@ -29,21 +29,13 @@ public class Organisation implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
 	
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="parent_id")
-	private Organisation parentId;
+	@Column(name="parent_id")
+	private Integer parentId;
 	
-	@Column(name="org_name")
-	private String orgName;
+	@OneToMany(mappedBy="parentId")
+	private Set<Organisation> childOrgs; 
 	
-	public String getOrgName() {
-		return orgName;
-	}
-
-	public void setOrgName(String orgName) {
-		this.orgName = orgName;
-	}
-
+	
 	public Integer getId() {
 		return Id;
 	}
@@ -52,14 +44,21 @@ public class Organisation implements Serializable{
 		Id = id;
 	}
 
-	public Organisation getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(Organisation parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 
+	public Set<Organisation> getChildOrgs() {
+		return childOrgs;
+	}
+
+	public void setChildOrgs(Set<Organisation> childOrgs) {
+		this.childOrgs = childOrgs;
+	}
 
 	
 }
