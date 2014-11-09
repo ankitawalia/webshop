@@ -2,8 +2,6 @@ package com.tacton.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.hibernate.Query;
 import org.springframework.stereotype.Component;
 

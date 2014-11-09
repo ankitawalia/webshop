@@ -13,8 +13,6 @@ import com.tacton.entity.Organisation;
 @Service
 public class OrganisationDaoImpl extends AbstractBaseDaoImpl<Attribute> implements OrganisationDao{
 
-	private static Logger logger = Logger.getLogger(OrganisationDaoImpl.class);
-	
 	private String namedQueryString;
 
 	@Override

@@ -3,9 +3,7 @@ package com.tacton.dao.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import com.tacton.Exception.NoSuchAttributeException;

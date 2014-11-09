@@ -5,12 +5,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Component;
 
-import com.tacton.Exception.NoSuchAttributeException;
 import com.tacton.Exception.NoSuchProductException;
 import com.tacton.dao.ProductDao;
-import com.tacton.entity.Attribute;
 import com.tacton.entity.Product;
-import com.tacton.util.Type;
 
 @Component
 public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements ProductDao {
