@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.tacton.dto.ProductDetailsDTO;
 import com.tacton.entity.Product;
-import com.tacton.entity.ProductAttribute;
 import com.tacton.service.ProductAttributeService;
 import com.tacton.service.ProductService;
 
@@ -37,8 +37,8 @@ public class ProductAttributeAPI extends SpringBeanAutowiringSupport {
 	@GET
 	@Path("/getallproducts/{id}")
 	@Produces("application/json")
-	public List<ProductAttribute> getAllAttributesForProduct(@PathParam("id") int id) {
-		List<ProductAttribute> attribList = productAttributeService.findAllAttributesForProduct(id); 
+	public ProductDetailsDTO getAllAttributesForProduct(@PathParam("id") int id) {
+		ProductDetailsDTO attribList = productAttributeService.findAllAttributesForProduct(id); 
 		return attribList;
 	}
 

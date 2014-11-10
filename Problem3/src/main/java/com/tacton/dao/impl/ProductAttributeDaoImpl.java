@@ -13,6 +13,8 @@ import com.tacton.entity.ProductAttribute;
 public class ProductAttributeDaoImpl extends AbstractBaseDaoImpl<ProductAttribute> implements ProductAttributeDao {
 
 	private String namedQueryString;
+	
+	
 	 
 	@Override
 	protected String getNamedQueryString() {
@@ -33,7 +35,7 @@ public class ProductAttributeDaoImpl extends AbstractBaseDaoImpl<ProductAttribut
 	@Override
 	public List<ProductAttribute> findAllAttributesForProduct(int productId) {
 		String queryString = "SELECT * FROM product_attributes pa " +
-				 "WHERE pa.product_ref_id=:productId" ;
+				 "WHERE pa.product_ref_id=:productId order by pa.order asc" ;
 		    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(ProductAttribute.class).setParameter("productId", productId);
 		return query.list();
 	}
