@@ -7,4 +7,6 @@ public interface CustomerService {
     
 	public Customer findCustomerById(int customerId) throws NoSuchCustomerException;
 	
+	public Customer findCustomerForOrg(int orgId);
+	
 }

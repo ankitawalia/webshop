@@ -22,5 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 		
 	}
-	
+	public Customer findCustomerForOrg(int orgId)  {
+		Customer customer = customerDao.findCustomerForOrg(orgId);
+		return customer;
+	}
 }

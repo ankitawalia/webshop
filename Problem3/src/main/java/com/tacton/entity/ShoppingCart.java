@@ -2,7 +2,6 @@ package com.tacton.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,13 +31,13 @@ public class ShoppingCart implements Serializable{
 	@Column(name="created_date")
 	private Timestamp createdDate;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="product_ref_id")
-	private List<Product> product;
+	@ManyToOne
+	@JoinColumn( referencedColumnName = "product_id", name = "product_ref_id")
+	private Product product;
 	
-	@OneToOne
-	@JoinColumn(name="customer_ref_id")
-	private Customer customer;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn( referencedColumnName = "customer_id", name = "customer_ref_id")
+	private Customer customerId;
 
 	public Timestamp getCreatedDate() {
 		return createdDate;
@@ -56,23 +55,20 @@ public class ShoppingCart implements Serializable{
 		this.cartId = cartId;
 	}
 
-	public List<Product> getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(List<Product> product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Customer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(Customer customerId) {
+		this.customerId = customerId;
 	}
-
-
-	
 	
 }

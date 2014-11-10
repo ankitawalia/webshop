@@ -3,6 +3,7 @@ var rootURL = "api";
 var attributeApiUrl = rootURL+ "/attributes/group";
 var productApiUrl = rootURL+ "/product/getallproducts";
 var organisationApiUrl = rootURL+ "/organisation";
+var customerApiUrl = rootURL+ "/cart/details";
 
 var currentWine;
 
@@ -150,6 +151,26 @@ function findAllAttributesForProduct(productId) {
 	});
 }
 
+function findAllCarts(){
+	console.log('findAllCarts');
+	$.ajax({
+		type: 'GET',
+		url: rootURL+"/cart/details",
+		dataType: "json", // data type of response
+		success: renderCartList
+	});
+}
+
+function findCustomerForOrg(orgId){
+	console.log('findCustomerForOrg');
+	$.ajax({
+		type: 'GET',
+		url: customerApiUrl+ "/"+ orgId,
+		dataType: "json", // data type of response
+		success: renderCustomerData
+	});
+}
+
 function addWine() {
 	console.log('addWine');
 	$.ajax({
@@ -279,13 +300,40 @@ function renderProductAttributeList(data){
 	$('#sortable h3').remove();
 	$('#sortable li').remove();
 	$('#sortable br').remove();
-	$('#sortable').append('<h3> Attribute Name</h3>');
+	$('#sortable').append('<h3> Products and its Attribute</h3>');
 	$.each(list, function(index, attributeGroup) {
-		$('#sortable').append('<li> ' + attributeGroup.productId.productName + "</li></br>");
-		$('#sortable').append('<li> ' + attributeGroup.attributeId.attributeName + "</li></br>");
-	});
+		$('#sortable').append('<li> ' + attributeGroup.productName + "</li></br>");
+		$.each(attributeGroup, function(index, attrdto) {
+		$('#sortable').append('<li> ' + attrdto.attributeDTOs.attributeName + "</li></br>");
+		});
+		});
 }
 
+function renderCartList(data){
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+
+	$('#cartselectmenu option').remove();
+	$.each(list, function(index, attributeGroup) {
+		$('#cartselectmenu').append('<option value>'+attributeGroup.cartId+'</option>');
+	});
+	$( "#cartselectmenu" ).on( "selectmenuselect", function( event, ui ) {
+		var value = ui.item.value;
+		findCustomerForOrg(value);
+	} );
+	
+}
+
+function renderCustomerData(data){
+	var list = data == null ? [] : (data instanceof Array ? data : [data]);
+	$('#sortable h3').remove();
+	$('#sortable li').remove();
+	$('#sortable br').remove();
+	$('#sortable').append('<h3> Customer Details</h3>');
+	$.each(list, function(index, attributeGroup) {
+		$('#sortable').append('<h3> Customer Name</h3>'+'<li> ' + attributeGroup.customerId.customerName + "</li></br>");
+		$('#sortable').append('<h3> Customer Address</h3>'+'<li> ' + attributeGroup.customerId.customerAddress + "</li></br>");
+	});
+}
 function renderDetails(wine) {
 	$('#wineId').val(wine.id);
 	$('#name').val(wine.name);

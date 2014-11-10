@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tacton.Exception.NoSuchShoppingCartException;
 import com.tacton.dao.ShoppingCartDao;
-import com.tacton.entity.Customer;
 import com.tacton.entity.ShoppingCart;
 import com.tacton.service.ShoppingCartService;
 
@@ -20,10 +19,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	private ShoppingCartDao shoppingCartDao;
 
 	@Override
-	public List<ShoppingCart> findShoppingCartById(Customer customerId) throws NoSuchShoppingCartException {
+	public List<ShoppingCart> findShoppingCartById(int customerId) throws NoSuchShoppingCartException {
 		List<ShoppingCart> shoppingCart = shoppingCartDao.findShoppingCartById(customerId);
 		return shoppingCart;
 		
+	}
+	
+	public List<ShoppingCart> findAllShoppingCart(){
+		List<ShoppingCart> shoppingCart = shoppingCartDao.findAllShoppingCart();
+		return shoppingCart;
 	}
 	
 }

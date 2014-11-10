@@ -5,6 +5,7 @@ import com.tacton.entity.Customer;
 
 public interface CustomerDao extends Dao<Customer>{
 	
-	public Customer findCustomerById(Object value) throws NoSuchCustomerException;
+	public Customer findCustomerById(int customerId) throws NoSuchCustomerException;
+	public Customer findCustomerForOrg(int orgId) ;
 		
 }

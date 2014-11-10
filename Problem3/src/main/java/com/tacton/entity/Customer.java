@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
 
 @Entity
 @Table(name="customer",schema="tacton")
@@ -37,15 +36,11 @@ public class Customer implements Serializable{
 	private String customerAddress;
 	
 	@OneToOne
-	@JoinColumn(name="cust_org_id")
+	@JoinColumn(referencedColumnName = "id", name = "cust_org_id")
 	private Organisation organisation;
 	
 	@Column(name="credit")
 	private double credit;
-	
-	@Column
-	@Version
-	private long version;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")
@@ -81,14 +76,6 @@ public class Customer implements Serializable{
 
 	public void setCredit(double credit) {
 		this.credit = credit;
-	}
-
-	public long getVersion() {
-		return version;
-	}
-
-	public void setVersion(long version) {
-		this.version = version;
 	}
 
 	public Date getCreatedDate() {
