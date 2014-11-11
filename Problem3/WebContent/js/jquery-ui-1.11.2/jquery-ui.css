@@ -834,7 +834,8 @@ body .ui-tooltip {
 	font-size: 1.1em;
 }
 .ui-widget .ui-widget {
-	font-size: 1em;
+	   font-size: 1.1em;
+    margin: 10px;
 }
 .ui-widget input,
 .ui-widget select,
@@ -1222,4 +1223,9 @@ body .ui-tooltip {
 	opacity: .6;
 	filter: Alpha(Opacity=60); /* support: IE8 */
 	border-radius: 0px;
+}
+
+li {
+	margin-top: 10px;	
+	margin-bottom: 10px;
 }

@@ -46,8 +46,21 @@
 	select {
 		width: 200px;
 	}
+		.attrGroup, .childAttribute {
+   border: 1px solid #dddddd;
+    font-size: 1.1em;
+    list-style: outside none none;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+   
+} 
 	</style>
-	<script>findAllCarts();</script>
+	<script>findAllCarts();
+	$("#customerTitle").hide();
+	$("#cartproducts").hide();
+	$("#organizationTitle").hide();
+	</script>
 </head>
 <body>
 
@@ -61,6 +74,21 @@
 <!-- Progressbar -->
 <h2 class="demoHeaders">Cart Details</h2>
 <select id="cartselectmenu"></select>
+
+<div id="customerTitle" class="ui-widget">
+	Customer:<span id="customer"></span> 
+</div>
+
+<div id="organizationTitle"class="ui-widget">
+	Organization:<span id="organization"></span> 
+</div>
+
+
+<!-- Progressbar -->
+<div>
+<ul id="cartproducts" class=" ui-widget ui-state-highlight">
+</ul>
+</div>
 
 <script src="js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 <script src="js/jquery-ui-1.11.2/jquery-ui.js"></script>

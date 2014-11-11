@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.tacton.dto.CartDetailsDTO;
 import com.tacton.entity.Customer;
 import com.tacton.entity.ShoppingCart;
 import com.tacton.service.CustomerService;
@@ -36,6 +37,14 @@ public class ShoppingCartAPI extends SpringBeanAutowiringSupport {
 	
 	@GET
 	@Path("/details/{id}")
+	@Produces("application/json")
+	public CartDetailsDTO getCartDetails(@PathParam("id") int id) {
+		CartDetailsDTO cartDetailsDto = shoppingCartService.findShoppingCartById(id); 
+		return cartDetailsDto;
+	}
+	
+	@GET
+	@Path("/details/customer/{id}")
 	@Produces("application/json")
 	public Customer getCustomerDetails(@PathParam("id") int id) {
 		Customer attribList = customerService.findCustomerForOrg(id); 

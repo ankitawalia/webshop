@@ -23,6 +23,14 @@ public class Customer implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public Organisation getOrganisation() {
+		return organisation;
+	}
+
+	public void setOrganisation(Organisation organisation) {
+		this.organisation = organisation;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="customer_id")

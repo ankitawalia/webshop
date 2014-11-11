@@ -171,6 +171,24 @@ function findCustomerForOrg(orgId){
 	});
 }
 
+function findCartById(cartId){
+	$("#customer").empty();
+	$("#cartproducts").empty();
+	$("#organization").empty();
+	$("#customerTitle").show();
+	$("#organizationTitle").show();
+	$("#customer").show();
+	$("#cartproducts").show();
+	$("#organization").show();
+	console.log('findcartById');
+	$.ajax({
+		type: 'GET',
+		url: rootURL+"/cart/details/" + cartId,
+		dataType: "json", // data type of response
+		success: renderCartData
+	});
+}
+
 function addWine() {
 	console.log('addWine');
 	$.ajax({
@@ -294,19 +312,62 @@ function renderProductList(data) {
 	} );
 	
 }
+
 function renderProductAttributeList(data){
 	
-	var list = data == null ? [] : (data instanceof Array ? data : [data]);
-	$('#sortable h3').remove();
-	$('#sortable li').remove();
-	$('#sortable br').remove();
-	$('#sortable').append('<h3> Products and its Attribute</h3>');
-	$.each(list, function(index, attributeGroup) {
-		$('#sortable').append('<li> ' + attributeGroup.productName + "</li></br>");
-		$.each(attributeGroup, function(index, attrdto) {
-		$('#sortable').append('<li> ' + attrdto.attributeDTOs.attributeName + "</li></br>");
+	var attr = data.attributeDTOs == null ? [] : (data.attributeDTOs instanceof Array ? data.attributeDTOs : [data.attributeDTOs]);
+	$('#products h3').remove();
+	$('#products ul').remove();
+	$('#products div').remove();
+	$('#products').append('<h3> Products and its Attribute</h3>');
+	$('#products').append('<div>'+data.productName+'</div>');
+	$('#products').append('<ul class="attrGroup">');
+	$.each(attr, function(index, attrDto) {
+		var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
+		var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
+		var li;
+		if(attrDto.attributeValue) {
+			 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
+		} else {
+			 li =  $('<li>'+attrDto.attributeName+'</li><br/>');
+		}
+		$('#products ul.attrGroup').append(li);
+		$('#products ul li').append('<ul>');
+		for(var i=0;i<attrChildAttribs.length;i++) {
+			$('#products ul li ul').append('<li >'+attrChildAttribs[i].attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrChildAttribs[i].attributeValue+'</li>');
+		}
+		$('#products ul li').append('</ul>');
 		});
+	
+	$('#products').append('</ul>');
+}
+
+function renderCartProductAttributeList(data){
+	var attr = data.attributeDTOs == null ? [] : (data.attributeDTOs instanceof Array ? data.attributeDTOs : [data.attributeDTOs]);
+	$('#cartproducts h3').remove();
+	$('#cartproducts ul').remove();
+	$('#cartproducts div').remove();
+	$('#cartproducts').append('<h3> Products and its Attribute</h3>');
+	$('#cartproducts').append('<div>'+data.productName+'</div>');
+	$('#cartproducts').append('<ul class="attrGroup">');
+	$.each(attr, function(index, attrDto) {
+		var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
+		var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
+		var li;
+		if(attrDto.attributeValue) {
+			 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
+		} else {
+			 li =  $('<li>'+attrDto.attributeName+'</li><br></br>');
+		}
+		$('#cartproducts ul.attrGroup').append(li);
+		$('#cartproducts ul li').append('<ul>');
+		for(var i=0;i<attrChildAttribs.length;i++) {
+			$('#cartproducts ul li ul').append('<li >'+attrChildAttribs[i].attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrChildAttribs[i].attributeValue+'</li>');
+		}
+		$('#cartproducts ul li').append('</ul>');
 		});
+	
+	$('#cartproducts').append('</ul>');
 }
 
 function renderCartList(data){
@@ -314,13 +375,12 @@ function renderCartList(data){
 
 	$('#cartselectmenu option').remove();
 	$.each(list, function(index, attributeGroup) {
-		$('#cartselectmenu').append('<option value>'+attributeGroup.cartId+'</option>');
+		$('#cartselectmenu').append('<option value='+attributeGroup.cartId+'>'+attributeGroup.cartId+'</option>');
 	});
 	$( "#cartselectmenu" ).on( "selectmenuselect", function( event, ui ) {
 		var value = ui.item.value;
-		findCustomerForOrg(value);
+		findCartById(value);
 	} );
-	
 }
 
 function renderCustomerData(data){
@@ -334,6 +394,17 @@ function renderCustomerData(data){
 		$('#sortable').append('<h3> Customer Address</h3>'+'<li> ' + attributeGroup.customerId.customerAddress + "</li></br>");
 	});
 }
+
+function renderCartData(data){
+	$('#sortable h3').remove();
+	$('#sortable li').remove();
+	$('#sortable br').remove();
+	$('#customer').append(data.customer.customerName);
+	$('#organization').append(data.org.orgName);
+	renderCartProductAttributeList(data.productDetailsDTO);
+}
+
+
 function renderDetails(wine) {
 	$('#wineId').val(wine.id);
 	$('#name').val(wine.name);
