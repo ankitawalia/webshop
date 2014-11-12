@@ -25,6 +25,6 @@ public class CustomerDaoImpl extends AbstractBaseDaoImpl<Customer> implements Cu
 		    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(Customer.class);
 		    return (Customer) query.list().get(0);
 	}
-		
+	
 
 }

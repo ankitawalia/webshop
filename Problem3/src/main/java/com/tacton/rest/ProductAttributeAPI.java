@@ -41,5 +41,6 @@ public class ProductAttributeAPI extends SpringBeanAutowiringSupport {
 		ProductDetailsDTO attribList = productAttributeService.findAllAttributesForProduct(id); 
 		return attribList;
 	}
+	
 
 }

@@ -2,7 +2,6 @@ package com.tacton.dao.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 

@@ -21,10 +21,10 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_id")
-	private int productId;
+	public int productId;
 	
 	@Column(name="product_name")
-	private String productName;
+	public String productName;
 	
 	public String getProductName() {
 		return productName;
@@ -41,6 +41,17 @@ public class Product implements Serializable{
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+	
+	@Override
+	
+	    public String toString() {
+	
+	        return new StringBuffer(" Product Id : ").append(this.productId)
+	
+	                .append(" Product Name : ").append(this.productName).toString();
+
+	    }
+
 
 	
 }

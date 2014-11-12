@@ -12,4 +12,5 @@ public interface ProductService {
 	public void addProduct(Product product)throws NoSuchProductException;
 
 	public List<Product> findAllProducts();
+	
 }

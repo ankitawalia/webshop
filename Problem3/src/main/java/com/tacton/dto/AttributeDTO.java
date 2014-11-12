@@ -2,8 +2,6 @@ package com.tacton.dto;
 
 import java.util.Collection;
 
-import com.tacton.entity.Attribute;
-
 public class AttributeDTO {
 	
 private Integer attributeId;

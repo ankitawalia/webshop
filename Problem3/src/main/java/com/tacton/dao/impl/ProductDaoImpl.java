@@ -31,12 +31,12 @@ public class ProductDaoImpl extends AbstractBaseDaoImpl<Product> implements Prod
 		return productList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> findAllProducts() {
 		String queryString = "SELECT * from product";
 	    Query query = getHibernateSession().createSQLQuery(queryString).addEntity(Product.class);
 	    return query.list();
 	}
-	
 	
 }
