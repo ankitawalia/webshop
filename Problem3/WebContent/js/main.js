@@ -226,26 +226,35 @@ function renderProductAttributeList(data){
 	$('#products div').remove();
 	$('#products').append('<h3> Products and its Attribute</h3>');
 	$('#products').append('<div>'+data.productName+'</div>');
-	$('#products').append('<ul class="attrGroup">');
+	$('#products').append('<ul class="productattrGroup">');
 	$.each(attr, function(index, attrDto) {
-		var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
-		var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
-		var li;
-		if(attrDto.attributeValue) {
-			 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
-		} else {
-			 li =  $('<li>'+attrDto.attributeName+'</li><br/>');
-		}
-		$('#products ul.attrGroup').append(li);
-		$('#products ul li').append('<ul>');
-		for(var i=0;i<attrChildAttribs.length;i++) {
-			$('#products ul li ul').append('<li >'+attrChildAttribs[i].attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrChildAttribs[i].attributeValue+'</li>');
-		}
-		$('#products ul li').append('</ul>');
-		});
-	
+		renderProductAttributesStructureInProducts(index, attrDto, '.productattrGroup');
+	});
 	$('#products').append('</ul>');
 }
+
+function renderProductAttributesStructureInProducts() {
+	var attrDto = arguments[1];
+	var index = arguments[0];
+	var groupClass = arguments[2];
+var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
+var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
+var li;
+if(attrDto.attributeValue) {
+	 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
+} else {
+	 li =  $('<li class=productchildAttrGroup'+index+'><br/>'+attrDto.attributeName+'</li>');
+}
+$('#products ul'+groupClass).append(li);
+$('#products ul li.productchildAttrGroup'+index).append('<ul>');
+for(var i=0;i<attrChildAttribs.length;i++) {
+	var j = index+1;
+	renderProductAttributesStructureInProducts(j, attrChildAttribs[i], ' li.productchildAttrGroup'+ (index));
+}
+$('#products ul li.productchildAttrGroup'+index).append('</ul>');
+}
+
+
 
 function renderCartProductAttributeList(data){
 	var attr = data.attributeDTOs == null ? [] : (data.attributeDTOs instanceof Array ? data.attributeDTOs : [data.attributeDTOs]);
@@ -256,25 +265,34 @@ function renderCartProductAttributeList(data){
 	$('#cartproducts').append('<div>'+data.productName+'</div>');
 	$('#cartproducts').append('<ul class="attrGroup">');
 	$.each(attr, function(index, attrDto) {
-		var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
-		var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
-		var li;
-		if(attrDto.attributeValue) {
-			 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
-		} else {
-			 li =  $('<li>'+attrDto.attributeName+'</li><br></br>');
-		}
-		$('#cartproducts ul.attrGroup').append(li);
-		$('#cartproducts ul li').append('<ul>');
-		for(var i=0;i<attrChildAttribs.length;i++) {
-			$('#cartproducts ul li ul').append('<li >'+attrChildAttribs[i].attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrChildAttribs[i].attributeValue+'</li>');
-		}
-		$('#cartproducts ul li').append('</ul>');
-		});
-	
+		renderProductAttributesStructure(index, attrDto, '.attrGroup');
+	});
 	$('#cartproducts').append('</ul>');
 }
 
+
+function renderProductAttributesStructure() {
+	var attrDto = arguments[1];
+	var index = arguments[0];
+	var groupClass = arguments[2];
+var attrChildAttribs = attrDto.childAttributes == null ? [] : (attrDto.childAttributes instanceof Array ? attrDto.childAttributes : [attrDto.childAttributes]);
+var attrValue = attrDto.attributeValue != null ? attrDto.attributeValue : " ";
+var li;
+if(attrDto.attributeValue) {
+	 li =  $('<li>'+attrDto.attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrValue+'</li>');
+} else {
+	 li =  $('<li class=childAttrGroup'+index+'><br/>'+attrDto.attributeName+'</li>');
+}
+$('#cartproducts ul'+groupClass).append(li);
+$('#cartproducts ul li.childAttrGroup'+index).append('<ul>');
+for(var i=0;i<attrChildAttribs.length;i++) {
+	var j = index+1;
+	renderProductAttributesStructure(j, attrChildAttribs[i], ' li.childAttrGroup'+ (index));
+	//$('#cartproducts ul li.childAttrGroup'+index+' ul').append('<li >'+attrChildAttribs[i].attributeName+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+attrChildAttribs[i].attributeValue+'</li>');
+}
+$('#cartproducts ul li.childAttrGroup'+index).append('</ul>');
+
+}
 function renderCartList(data){
 	var list = data == null ? [] : (data instanceof Array ? data : [data]);
 

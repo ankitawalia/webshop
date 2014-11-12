@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Function;
@@ -60,31 +61,16 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
 			AttributeDTO attributeDTO = new AttributeDTO();
 			if (Type.ATTRIBUTE_GROUP.equals(productAttribute.getAttributeId()
 					.getType())) {
-				List<AttributeRelationships> attributeRelationships = attributeRelationshipsDao
-						.findAllAttributesinAttributeGroup(productAttribute
-								.getAttributeId().getAttributeId());
 				
-				Collection<AttributeDTO> childAttributes = Collections2.transform(
-						attributeRelationships,
-						new Function<AttributeRelationships, AttributeDTO>() {
-							@Override
-							public AttributeDTO apply(AttributeRelationships input) {
-								AttributeDTO attributeDTO = new AttributeDTO();
-								attributeDTO.setAttributeId(input.getChildId().getAttributeId());
-								attributeDTO.setAttributeName(input.getChildId().getAttributeName());
-								attributeDTO.setAttributeValue(mapProductIdValue.get(input.getChildId().getAttributeId()));
-								return attributeDTO;
-							}
-						});
-				childAttributes.size();
+				Collection<AttributeDTO> childAttributes = getChildAttributes(productAttribute.getAttributeId().getAttributeId()
+					, mapProductIdValue);
+				
 				attributeDTO.setAttributeId(productAttribute.getAttributeId()
 						.getAttributeId());
 				attributeDTO.setAttributeName(productAttribute.getAttributeId()
 						.getAttributeName());
 				attributeDTO.setChildAttributes(childAttributes);
-				for(AttributeDTO childAttribute :  childAttributes) {
-					idsToExclude.add(childAttribute.getAttributeId());
-				}
+				setIdsToExclude(childAttributes, idsToExclude);
 
 			} else if (!idsToExclude.contains(productAttribute.getAttributeId().getAttributeId())){
 				attributeDTO.setAttributeId(productAttribute.getAttributeId()
@@ -99,6 +85,39 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
 			productDetailsDTO.setAttributeDTOs(attributeSet);
 		}
 		return productDetailsDTO;
+	}
+
+	private void setIdsToExclude(Collection<AttributeDTO> childAttributes, List<Integer> idsToExclude) {
+		for(AttributeDTO childAttribute :  childAttributes) {
+			idsToExclude.add(childAttribute.getAttributeId());
+			if(childAttribute.getChildAttributes() != null && !childAttribute.getChildAttributes().isEmpty()) {
+				setIdsToExclude(childAttribute.getChildAttributes(), idsToExclude);
+			}
+		}		
+	}
+
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	private Collection<AttributeDTO>  getChildAttributes(
+			int attribId, final Map<Integer, String> mapProductIdValue) {
+		List<AttributeRelationships> attributeRelationships = attributeRelationshipsDao
+				.findAllAttributesinAttributeGroup(attribId);
+		Collection<AttributeDTO> childAttributes = Collections2.transform(
+				attributeRelationships,
+				new Function<AttributeRelationships, AttributeDTO>() {
+					@Override
+					public AttributeDTO apply(AttributeRelationships input) {
+						AttributeDTO attributeDTO = new AttributeDTO();
+						attributeDTO.setAttributeId(input.getChildId().getAttributeId());
+						attributeDTO.setAttributeName(input.getChildId().getAttributeName());
+						attributeDTO.setAttributeValue(mapProductIdValue.get(input.getChildId().getAttributeId()));
+						if(Type.ATTRIBUTE_GROUP.equals(input.getChildId().getType())) {
+							attributeDTO.setChildAttributes(getChildAttributes(input.getChildId().getAttributeId(), mapProductIdValue));
+						}
+						return attributeDTO;
+					}
+				});
+		childAttributes.size();	
+		return childAttributes;
 	}
 
 }
