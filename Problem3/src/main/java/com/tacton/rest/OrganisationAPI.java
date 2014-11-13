@@ -38,6 +38,7 @@ public class OrganisationAPI extends SpringBeanAutowiringSupport {
 	private List<OrganisationDTO> getOrganisationTreeStructure(
 			List<Organisation> attribList) {
 		final List<OrganisationDTO> organisationTree = new ArrayList<>();
+		@SuppressWarnings("unused")
 		Integer previousOrgId = null; 
 		int row = 1;
     	int column = 1;

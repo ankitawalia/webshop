@@ -27,6 +27,7 @@ public class OrganisationDaoImpl extends AbstractBaseDaoImpl<Attribute> implemen
 	    return (Organisation) query.list().get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Organisation> findAllOrganisations() {
 		String queryString = "SELECT * from organisation" ;
@@ -35,6 +36,7 @@ public class OrganisationDaoImpl extends AbstractBaseDaoImpl<Attribute> implemen
 	    return orgList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Organisation> findAllOrganisations(int parentOrgId) {
 		String queryString = "SELECT * from organisation where parent_id=:parentOrgId" ;

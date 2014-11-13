@@ -5,35 +5,6 @@ var productApiUrl = rootURL+ "/product/getallproducts";
 var organisationApiUrl = rootURL+ "/organisation";
 var customerApiUrl = rootURL+ "/cart/details";
 
-// Nothing to delete in initial application state
-$('#btnDelete').hide();
-
-// Register listeners
-$('#btnSearch').click(function() {
-	search($('#searchKey').val());
-	return false;
-});
-
-// Trigger search when pressing 'Return' on search key input field
-$('#searchKey').keypress(function(e){
-	if(e.which == 13) {
-		search($('#searchKey').val());
-		e.preventDefault();
-		return false;
-    }
-});
-
-$("img").error(function(){
-  $(this).attr("src", "pics/generic.jpg");
-
-});
-
-function search(searchKey) {
-	if (searchKey == '') 
-		findAll();
-	else
-		findByName(searchKey);
-}
 
 function findAllAttributeGroups() {
 	console.log('findAll');

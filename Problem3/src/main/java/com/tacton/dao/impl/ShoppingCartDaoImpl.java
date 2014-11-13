@@ -30,6 +30,7 @@ public class ShoppingCartDaoImpl extends AbstractBaseDaoImpl<ShoppingCart> imple
 	    return (ShoppingCart) query.list().get(0);
 	
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ShoppingCart> findAllShoppingCart(){
 		String queryString = "SELECT * FROM shopping_cart sc" ;

@@ -64,6 +64,7 @@ public abstract class AbstractHibernateDaoImpl<T> implements Dao<T> {
 	 * Method to find the entity. Queries are cached so as to take advantage of
 	 * Hibernate 2nd level cache
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<T> find(final String propertyName, final Object value) {
 		logger.debug("Finding " + propertyName + " with value " + value);
@@ -79,6 +80,7 @@ public abstract class AbstractHibernateDaoImpl<T> implements Dao<T> {
 		return em().find(getEntityClass(), id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public final T load(final Serializable id) {
 		return (T) getHibernateSession().load(this.getClass(), id);

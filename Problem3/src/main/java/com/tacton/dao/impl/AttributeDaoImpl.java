@@ -36,6 +36,7 @@ public class AttributeDaoImpl extends AbstractBaseDaoImpl<Attribute> implements 
 		return attributeList.get(0);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Attribute> findAllAttributesByType(Type type)
 			throws NoSuchAttributeException {
